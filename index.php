@@ -55,6 +55,25 @@
         "Brendan Eich",
         "Dennis Ritchie",
     ];
+
+    // Associative arrays
+    $books = [
+        [
+            "title" => "Do Androids Dream of Electric Sheep",
+            "author" => "Philip K. Dick",
+            "purchaseUrl" => "http://www.amazon.com"
+        ],
+        [
+            "title" => "Rich Dad, Poor Dad",
+            "author" => "Robert Kiyosaki",
+            "purchaseUrl" => "http://www.takealot.com"
+        ],
+        [
+            "title" => "Project Hail Mary",
+            "author" => "Andy Weir",
+            "purchaseUrl" => "http://www.loot.co.za"
+        ]
+    ];
     ?>
     <h2>Recommended books</h2>
     <ul>
@@ -67,8 +86,21 @@
     <h2>Recommended Authors</h2>
     <ul>
         <!-- This example is the example of writing cleaner code for the foreach loop in php -->
-        <?php foreach ($listOfNames as $name) : ?>
-            <li><?= $name ?></li>
+        <?php foreach ($listOfNames as $name): ?>
+            <li>
+                <?= $name ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <h2>Associative Arrays</h2>
+    <ul>
+        <?php foreach ($books as $book): ?>
+            <li>
+                "<a href="<?= $book['purchaseUrl'] ?>" target="_blank">
+                    <?= $book['title'] ?>
+                </a>" by
+                <?= $book['author'] ?>
+            </li>
         <?php endforeach; ?>
     </ul>
 </body>
