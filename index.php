@@ -80,6 +80,79 @@
             "rating" => 4.7
         ]
     ];
+
+    $movies = [
+        [
+            'title' => 'The Shawshank Redemption',
+            'year' => 1994,
+            'director' => 'Frank Darabont',
+            'rating' => 9.3
+        ],
+        [
+            'title' => 'The Godfather',
+            'year' => 1972,
+            'director' => 'Francis Ford Coppola',
+            'rating' => 9.2
+        ],
+        [
+            'title' => 'The Dark Knight',
+            'year' => 2008,
+            'director' => 'Christopher Nolan',
+            'rating' => 9
+        ],
+        [
+            'title' => 'Pulp Fiction',
+            'year' => 1994,
+            'director' => 'Quentin Tarantino',
+            'rating' => 8
+        ],
+        [
+            'title' => 'Fight Club',
+            'year' => 1999,
+            'director' => 'David Fincher',
+            'rating' => 8
+        ],
+        [
+            'title' => 'Inception',
+            'year' => 2010,
+            'director' => 'Christopher Nolan',
+            'rating' => 8
+        ],
+        [
+            'title' => 'The Matrix',
+            'year' => 1999,
+            'director' => 'Lana Wachowski',
+            'rating' => 8
+        ],
+        [
+            'title' => 'The Lord of the Rings: The Return of the King',
+            'year' => 2003,
+            'director' => 'Peter Jackson',
+            'rating' => 8
+        ]
+    ];
+
+    function filterByAuthor($books, $author) {
+        $filteredBooks = [];
+
+        foreach ($books as $book) {
+            if ($book['author'] === $author) {
+                $filteredBooks[] = $book;
+            }
+        }
+        return $filteredBooks;
+    };
+
+    function filterByYear($movies, $year) {
+        $filteredMovies = [];
+
+        foreach ($movies as $movie) {
+            if ($movie['year'] >= $year) {
+                $filteredMovies[] = $movie;
+            }
+        }
+        return $filteredMovies;
+    };
     ?>
     <h2>Recommended books</h2>
     <ul>
@@ -106,8 +179,40 @@
                     <?= $book['title'] ?>
                 </a>" by
                 <?= $book['author'] ?>
-                was published in <?= $book['year'] ?>
-                and have a rating of <?= $book['rating'] ?> stars.
+                was published in
+                <?= $book['year'] ?>
+                and have a rating of
+                <?= $book['rating'] ?> stars.
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <!-- List books based on conditional statement -->
+    <h2>List with function</h2>
+    <ul>
+        <?php foreach (filterByAuthor($books, "Philip K. Dick") as $book): ?>
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>" target="_blank">
+                    <?= $book['title'] ?>
+                </a> by
+                <?= $book['author'] ?>
+                was published in
+                <?= $book['year'] ?>
+                and have a rating of
+                <?= $book['rating'] ?> stars.
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <h2>List movies with function</h2>
+    <ul>
+        <?php foreach (filterByYear($movies, 2000) as $movie): ?>
+            <li>
+                The movie
+                <?= $movie['title'] ?> by
+                <?= $movie['director'] ?>
+                and was released in
+                <?= $movie['year'] ?>
+                and have a rating of
+                <?= $movie['rating'] ?>.
             </li>
         <?php endforeach; ?>
     </ul>
