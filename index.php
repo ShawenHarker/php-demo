@@ -61,17 +61,23 @@
         [
             "title" => "Do Androids Dream of Electric Sheep",
             "author" => "Philip K. Dick",
-            "purchaseUrl" => "http://www.amazon.com"
+            "purchaseUrl" => "http://www.amazon.com",
+            "year" => 1968,
+            "rating" => 4.4
         ],
         [
             "title" => "Rich Dad, Poor Dad",
             "author" => "Robert Kiyosaki",
-            "purchaseUrl" => "http://www.takealot.com"
+            "purchaseUrl" => "http://www.takealot.com",
+            "year" => 1997,
+            "rating" => 4.7
         ],
         [
             "title" => "Project Hail Mary",
             "author" => "Andy Weir",
-            "purchaseUrl" => "http://www.loot.co.za"
+            "purchaseUrl" => "http://www.loot.co.za",
+            "year" => 2021,
+            "rating" => 4.7
         ]
     ];
     ?>
@@ -100,6 +106,8 @@
                     <?= $book['title'] ?>
                 </a>" by
                 <?= $book['author'] ?>
+                was published in <?= $book['year'] ?>
+                and have a rating of <?= $book['rating'] ?> stars.
             </li>
         <?php endforeach; ?>
     </ul>
