@@ -35,5 +35,22 @@
             <!-- This is the shorthand to <?php echo $message; ?>  -->
             <?= $message ?>
         </h1>
+        <h2>Recommended books</h2>
+        <?php 
+            $listOfBooks = [
+              "The 4 hour work week",
+                "Rich Dad, Poor Dad",
+                "The Art of Computer Programming",
+                "Programming logic & Design",
+                "Head First PHP",
+                "Head First JavaScript",
+                "Clean Coder"
+            ];
+        ?>
+        <ul>
+            <?php foreach ($listOfBooks as $book) {
+                echo "<li>$book</li>";
+            } ?>
+        </ul>
     </body>
 </html>
