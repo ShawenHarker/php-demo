@@ -11,6 +11,7 @@
             height: 100vh;
             margin: 0;
             font-family: sans-serif;
+            margin-bottom: 50px;
         }
 
         .title {
@@ -132,7 +133,8 @@
         ]
     ];
 
-    function filterByAuthor($books, $author) {
+    function filterByAuthor($books, $author)
+    {
         $filteredBooks = [];
 
         foreach ($books as $book) {
@@ -141,9 +143,11 @@
             }
         }
         return $filteredBooks;
-    };
+    }
+    ;
 
-    function filterByYear($movies, $year) {
+    function filterByYear($movies, $year)
+    {
         $filteredMovies = [];
 
         foreach ($movies as $movie) {
@@ -152,8 +156,34 @@
             }
         }
         return $filteredMovies;
-    };
-    ?>
+    }
+    ;
+
+    // Lambda functions
+    function filter($items, $fn)
+    {
+        $filteredItems = [];
+
+        foreach ($items as $item) {
+            if ($fn($item)) {
+                $filteredItems[] = $item;
+            }
+        }
+        return $filteredItems;
+    }
+    ;
+
+    $filteredBooks = filter($books, function ($book) {
+        return $book['year'] >= 1950 && $book['year'] <= 2020;
+    });
+
+    // This is the built in lambda function of php, the above function from lines 163 to 178 is equivalent to the function below of lines 181 to 183.
+    $filterMovies = array_filter($movies, function ($movie) {
+        return $movie['year'] < 2000;
+    })
+
+        ?>
+
     <h2>Recommended books</h2>
     <ul>
         <?php foreach ($listOfBooks as $book) {
@@ -189,7 +219,7 @@
     <!-- List books based on conditional statement -->
     <h2>List with function</h2>
     <ul>
-        <?php foreach (filterByAuthor($books, "Philip K. Dick") as $book): ?>
+        <?php foreach (filterByAuthor($books, "Robert Kiyosaki") as $book): ?>
             <li>
                 <a href="<?= $book['purchaseUrl'] ?>" target="_blank">
                     <?= $book['title'] ?>
@@ -205,6 +235,36 @@
     <h2>List movies with function</h2>
     <ul>
         <?php foreach (filterByYear($movies, 2000) as $movie): ?>
+            <li>
+                The movie
+                <?= $movie['title'] ?> by
+                <?= $movie['director'] ?>
+                and was released in
+                <?= $movie['year'] ?>
+                and have a rating of
+                <?= $movie['rating'] ?>.
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <h2>List with lambda function</h2>
+    <h3>Books</h3>
+    <ul>
+        <?php foreach ($filteredBooks as $book): ?>
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>" target="_blank">
+                    <?= $book['title'] ?>
+                </a> by
+                <?= $book['author'] ?>
+                was published in
+                <?= $book['year'] ?>
+                and have a rating of
+                <?= $book['rating'] ?> stars.
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <h3>Movies</h3>
+    <ul>
+        <?php foreach ($filterMovies as $movie): ?>
             <li>
                 The movie
                 <?= $movie['title'] ?> by
